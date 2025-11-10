@@ -95,7 +95,7 @@ export function AdminDashboardMain() {
                 <p className="text-center text-gray-900 text-lg">safe</p>
             </div>
 
-            <div className="grid grid-cols-2 gap-1 w-full mx-auto">
+            <div className="grid grid-cols-2 gap-6 w-full mx-auto">
                 <div className="bg-white/90 backdrop-blur-sm p-6 rounded-lg shadow-lg text-gray-900">
                     <h3 className="text-lg font-bold text-black uppercase">Status Palang 1</h3>
                     <p className="text-sm text-gray-500 uppercase">Data</p>
