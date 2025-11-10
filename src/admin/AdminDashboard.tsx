@@ -64,9 +64,9 @@ export function AdminDashboard() {
               <Link to="/adminDashboard/rfid" className="block p-3 rounded-md text-gray-600 font-medium hover:bg-black/10 hover:text-black transition-colors">
                   RFID Tables
               </Link>
-              <Link to="/adminDashboard/denah" className="block p-3 rounded-md text-gray-600 font-medium hover:bg-black/10 hover:text-black transition-colors">
+              {/* <Link to="/adminDashboard/denah" className="block p-3 rounded-md text-gray-600 font-medium hover:bg-black/10 hover:text-black transition-colors">
                   Denah
-              </Link>
+              </Link> */}
               <Link to="/adminDashboard/statistics" className="block p-3 rounded-md text-gray-600 font-medium hover:bg-black/10 hover:text-black transition-colors">
                   Statistik
               </Link>
