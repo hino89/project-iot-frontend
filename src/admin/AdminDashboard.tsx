@@ -68,7 +68,7 @@ export function AdminDashboard() {
                   Denah
               </Link> */}
               <Link to="/adminDashboard/statistics" className="block p-3 rounded-md text-gray-600 font-medium hover:bg-black/10 hover:text-black transition-colors">
-                  Statistik
+                  Statistics
               </Link>
           </nav>
       </aside>

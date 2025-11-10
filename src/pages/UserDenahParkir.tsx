@@ -34,10 +34,54 @@ export function UserDenahParkir() {
                 </p>
 
                 {/* 2. Placeholder Peta (style dari User Dashboard) */}
-                <div className="w-full h-[500px] bg-gray-300 rounded-lg mt-8 flex items-center justify-center">
-                    <span className="text-4xl font-bold text-gray-500">
-                    DENAH PARKIR (PETA LAYOUT)
-                    </span>
+                <div className="w-full h-[500px] rounded-lg mt-8 flex items-center justify-center bg-[url('/public/Parkingx4.png')] bg-contain bg-center bg-no-repeat">
+
+                </div>
+                <div className="grid grid-cols-4 gap-2 pt-6 w-full mx-auto">
+                    <div className="bg-white/90 backdrop-blur-sm p-4 rounded-lg shadow-lg text-gray-900">
+                        <h3 className="text-sm font-bold text-black uppercase">Plot 1</h3>
+                        <div className="my-4 flex justify-center">
+                            <div className="w-12 h-12 mx-auto rounded-full flex items-center justify-center border-2 border-cyanGrungeLight">
+                                <svg className="w-6 h-6 text-cyanGrungeLight" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                                    <path strokeLinecap="round" strokeLinejoin="round" d="M7.5 21 3 16.5m0 0L7.5 12M3 16.5h18m-7.5-3L21 9m0 0L16.5 4.5M21 9H3" />
+                                </svg>
+                            </div>
+                        </div>
+                        <p className="text-center text-gray-900 text-sm">Kosong</p>
+                    </div>
+                    <div className="bg-white/90 backdrop-blur-sm p-4 rounded-lg shadow-lg text-gray-900">
+                        <h3 className="text-sm font-bold text-black uppercase">Plot 2</h3>
+                        <div className="my-4 flex justify-center">
+                            <div className="w-12 h-12 mx-auto rounded-full flex items-center justify-center border-2 border-cyanGrungeLight">
+                                <svg className="w-6 h-6 text-cyanGrungeLight" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                                    <path strokeLinecap="round" strokeLinejoin="round" d="M7.5 21 3 16.5m0 0L7.5 12M3 16.5h18m-7.5-3L21 9m0 0L16.5 4.5M21 9H3" />
+                                </svg>
+                            </div>
+                        </div>
+                        <p className="text-center text-gray-900 text-sm">Kosong</p>
+                    </div>
+                    <div className="bg-white/90 backdrop-blur-sm p-4 rounded-lg shadow-lg text-gray-900">
+                        <h3 className="text-sm font-bold text-black uppercase">Plot 3</h3>
+                        <div className="my-4 flex justify-center">
+                            <div className="w-12 h-12 mx-auto rounded-full flex items-center justify-center border-2 border-cyanGrungeLight">
+                                <svg className="w-6 h-6 text-cyanGrungeLight" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                                    <path strokeLinecap="round" strokeLinejoin="round" d="M7.5 21 3 16.5m0 0L7.5 12M3 16.5h18m-7.5-3L21 9m0 0L16.5 4.5M21 9H3" />
+                                </svg>
+                            </div>
+                        </div>
+                        <p className="text-center text-gray-900 text-sm">Kosong</p>
+                    </div>
+                    <div className="bg-white/90 backdrop-blur-sm p-4 rounded-lg shadow-lg text-gray-900">
+                        <h3 className="text-sm font-bold text-black uppercase">Plot 4</h3>
+                        <div className="my-4 flex justify-center">
+                            <div className="w-12 h-12 mx-auto rounded-full flex items-center justify-center border-2 border-cyanGrungeLight">
+                                <svg className="w-6 h-6 text-cyanGrungeLight" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                                    <path strokeLinecap="round" strokeLinejoin="round" d="M7.5 21 3 16.5m0 0L7.5 12M3 16.5h18m-7.5-3L21 9m0 0L16.5 4.5M21 9H3" />
+                                </svg>
+                            </div>
+                        </div>
+                        <p className="text-center text-gray-900 text-sm">Kosong</p>
+                    </div>
                 </div>
 
                 {/* 3. Tombol Kembali (style dari tombol sekunder) */}
