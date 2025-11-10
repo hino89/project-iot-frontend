@@ -16,8 +16,12 @@ import { AdminDashboard } from './admin/AdminDashboard.tsx';
 import { UserDenahParkir } from './pages/UserDenahParkir.tsx';
 import { UserTopUp } from './pages/UserTopUp.tsx';
 import { AdminDashboardMain } from './admin/AdminDashboardMain.tsx';
-import { AdminDashboardSensor } from './admin/AdminDashboardSensors.tsx';
+import { AdminDashboardSensors } from './admin/AdminDashboardSensors.tsx';
 import { AdminDashboardStatistics } from './admin/AdminDashboardStatistics.tsx';
+import { AdminDashboardUsers } from './admin/AdminDashboardUsers.tsx';
+import { AdminDashboardDenah } from './admin/AdminDashboardDenah.tsx';
+import { AdminDashboardRfid } from './admin/AdminDashboardRfid.tsx';
+import { AdminDashboardTransactions } from './admin/AdminDashboardTransactions.tsx';
 
 // ==========================================================
 // Routers
@@ -61,20 +65,28 @@ const router = createBrowserRouter([
         },
         {
           path: 'sensors', // <-- Perhatikan: 'sensors', BUKAN '/admin/sensors'
-          element: <AdminDashboardSensor />,
+          element: <AdminDashboardSensors />,
         },
         {
           path: 'statistics',
           element: <AdminDashboardStatistics />,
         },
-        // {
-        //   path: 'users',
-        //   element: <UserListPage />,
-        // },
-        // {
-        //   path: 'denah',
-        //   element: <DenahPage />,
-        // },
+        {
+          path: 'users',
+          element: <AdminDashboardUsers />,
+        },
+        {
+          path: 'denah',
+          element: <AdminDashboardDenah />,
+        },
+        {
+          path: 'rfid',
+          element: <AdminDashboardRfid />,
+        },
+        {
+          path: 'transactions',
+          element: <AdminDashboardTransactions />,
+        },
       ],
     }
 ]);

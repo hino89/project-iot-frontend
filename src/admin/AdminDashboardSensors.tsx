@@ -1,5 +1,5 @@
 // src/pages/SensorPage.tsx
-export function AdminDashboardSensor() {
+export function AdminDashboardSensors() {
   return (
     <div className="grid grid-cols-1 md:grid-cols-3 gap-6 p-24">
         <div className="bg-white/90 backdrop-blur-sm p-6 rounded-lg shadow-lg text-gray-900">

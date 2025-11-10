@@ -12,7 +12,9 @@ const routeTitles: Record<string, TitleInfo> = {
   "/adminDashboard/sensors": { main: "Sensors", sub: "DASHBOARD" },
   "/adminDashboard/users": { main: "User List", sub: "DASHBOARD" },
   "/adminDashboard/denah": { main: "Denah", sub: "DASHBOARD" },
-  "/adminDashboard/statistics": { main: "Statistics", sub: "DASHBOARD" }
+  "/adminDashboard/statistics": { main: "Statistics", sub: "DASHBOARD" },
+  "/adminDashboard/transactions": { main: "Transactions", sub: "DASHBOARD" },
+  "/adminDashboard/rfid": { main: "RFID Tables", sub: "DASHBOARD" }
 };
 
 export function AdminDashboard() {
@@ -55,6 +57,12 @@ export function AdminDashboard() {
               </Link>
               <Link to="/adminDashboard/users" className="block p-3 rounded-md text-gray-600 font-medium hover:bg-black/10 hover:text-black transition-colors">
                   User List
+              </Link>
+              <Link to="/adminDashboard/transactions" className="block p-3 rounded-md text-gray-600 font-medium hover:bg-black/10 hover:text-black transition-colors">
+                  Transactions
+              </Link>
+              <Link to="/adminDashboard/rfid" className="block p-3 rounded-md text-gray-600 font-medium hover:bg-black/10 hover:text-black transition-colors">
+                  RFID Tables
               </Link>
               <Link to="/adminDashboard/denah" className="block p-3 rounded-md text-gray-600 font-medium hover:bg-black/10 hover:text-black transition-colors">
                   Denah
