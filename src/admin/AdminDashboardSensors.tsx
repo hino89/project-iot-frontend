@@ -27,22 +27,37 @@ export function AdminDashboardSensors() {
             <p className="text-center text-gray-900 text-lg">safe</p>
         </div>
 
-        <div className="bg-white/90 backdrop-blur-sm p-6 rounded-lg shadow-lg text-gray-900">
-            <h3 className="text-lg font-bold text-black uppercase">Status Palang</h3>
-            <p className="text-sm text-gray-500 uppercase">Data</p>
-            <div className="my-4 flex justify-center">
-                <div className="w-32 h-32 mx-auto rounded-full bg-purple-100 flex items-center justify-center border-4 border-purple-200">
-                    <svg className="w-16 h-16 text-purple-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 10.5V6.75a4.5 4.5 0 1 0-9 0v3.75m.75 11.25h10.5a2.25 2.25 0 0 0 2.25-2.25v-6.75a2.25 2.25 0 0 0-2.25-2.25H6.75a2.25 2.25 0 0 0-2.25 2.25v6.75a2.25 2.25 0 0 0 2.25 2.25Z" />
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 13.5v-1.5c0-.621.504-1.125 1.125-1.125h.008c.621 0 1.125.504 1.125 1.125v1.5" />
-                    </svg>
+        <div className="grid grid-cols-2 gap-6 w-full mx-auto">
+                <div className="bg-white/90 backdrop-blur-sm p-6 rounded-lg shadow-lg text-gray-900">
+                    <h3 className="text-lg font-bold text-black uppercase">Status Palang 1</h3>
+                    <p className="text-sm text-gray-500 uppercase">Data</p>
+                    <div className="my-4 flex justify-center">
+                        <div className="w-32 h-32 mx-auto rounded-full bg-purple-100 flex items-center justify-center border-4 border-purple-200">
+                            <svg className="w-16 h-16 text-purple-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                                <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 10.5V6.75a4.5 4.5 0 1 0-9 0v3.75m.75 11.25h10.5a2.25 2.25 0 0 0 2.25-2.25v-6.75a2.25 2.25 0 0 0-2.25-2.25H6.75a2.25 2.25 0 0 0-2.25 2.25v6.75a2.25 2.25 0 0 0 2.25 2.25Z" />
+                                <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 13.5v-1.5c0-.621.504-1.125 1.125-1.125h.008c.621 0 1.125.504 1.125 1.125v1.5" />
+                            </svg>
+                        </div>
+                    </div>
+                    <p className="text-center text-gray-900 text-lg">terbuka</p>
+                </div>
+                <div className="bg-white/90 backdrop-blur-sm p-6 rounded-lg shadow-lg text-gray-900">
+                    <h3 className="text-lg font-bold text-black uppercase">Status Palang 2</h3>
+                    <p className="text-sm text-gray-500 uppercase">Data</p>
+                    <div className="my-4 flex justify-center">
+                        <div className="w-32 h-32 mx-auto rounded-full bg-purple-100 flex items-center justify-center border-4 border-purple-200">
+                            <svg className="w-16 h-16 text-purple-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                                <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 10.5V6.75a4.5 4.5 0 1 0-9 0v3.75m.75 11.25h10.5a2.25 2.25 0 0 0 2.25-2.25v-6.75a2.25 2.25 0 0 0-2.25-2.25H6.75a2.25 2.25 0 0 0-2.25 2.25v6.75a2.25 2.25 0 0 0 2.25 2.25Z" />
+                                <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 13.5v-1.5c0-.621.504-1.125 1.125-1.125h.008c.621 0 1.125.504 1.125 1.125v1.5" />
+                            </svg>
+                        </div>
+                    </div>
+                    <p className="text-center text-gray-900 text-lg">terbuka</p>
                 </div>
             </div>
-            <p className="text-center text-gray-900 text-lg">terbuka</p>
-        </div>
 
         <div className="bg-white/90 backdrop-blur-sm p-6 rounded-lg shadow-lg text-gray-900">
-            <h3 className="text-lg font-bold text-black uppercase">Ultrasonic 1</h3>
+            <h3 className="text-lg font-bold text-black uppercase">Ultrasonic 1 // Palang 1</h3>
             <p className="text-sm text-gray-500 uppercase">Data</p>
             <div className="my-4 flex justify-center">
                 <div className="w-32 h-32 mx-auto rounded-full flex items-center justify-center border-4 border-cyanGrungeLight">
@@ -55,7 +70,7 @@ export function AdminDashboardSensors() {
         </div>
 
         <div className="bg-white/90 backdrop-blur-sm p-6 rounded-lg shadow-lg text-gray-900">
-            <h3 className="text-lg font-bold text-black uppercase">Ultrasonic 2</h3>
+            <h3 className="text-lg font-bold text-black uppercase">Ultrasonic 2 // Palang 1</h3>
             <p className="text-sm text-gray-500 uppercase">Data</p>
             <div className="my-4 flex justify-center">
                 <div className="w-32 h-32 mx-auto rounded-full flex items-center justify-center border-4 border-redGrungeLight">
@@ -68,7 +83,7 @@ export function AdminDashboardSensors() {
         </div>
 
         <div className="bg-white/90 backdrop-blur-sm p-6 rounded-lg shadow-lg text-gray-900">
-            <h3 className="text-lg font-bold text-black uppercase">Ultrasonic 3</h3>
+            <h3 className="text-lg font-bold text-black uppercase">Ultrasonic 3 // Plot 1</h3>
             <p className="text-sm text-gray-500 uppercase">Data</p>
             <div className="my-4 flex justify-center">
                 <div className="w-32 h-32 mx-auto rounded-full flex items-center justify-center border-4 border-yellowGrungeLight">
@@ -81,7 +96,7 @@ export function AdminDashboardSensors() {
         </div>
 
         <div className="bg-white/90 backdrop-blur-sm p-6 rounded-lg shadow-lg text-gray-900">
-            <h3 className="text-lg font-bold text-black uppercase">Ultrasonic 4</h3>
+            <h3 className="text-lg font-bold text-black uppercase">Ultrasonic 4 // Plot 2</h3>
             <p className="text-sm text-gray-500 uppercase">Data</p>
             <div className="my-4 flex justify-center">
                 <div className="w-32 h-32 mx-auto rounded-full flex items-center justify-center border-4 border-purpleGrungeLight">
@@ -94,7 +109,7 @@ export function AdminDashboardSensors() {
         </div>
 
         <div className="bg-white/90 backdrop-blur-sm p-6 rounded-lg shadow-lg text-gray-900">
-            <h3 className="text-lg font-bold text-black uppercase">Ultrasonic 5</h3>
+            <h3 className="text-lg font-bold text-black uppercase">Ultrasonic 5 // Plot 3</h3>
             <p className="text-sm text-gray-500 uppercase">Data</p>
             <div className="my-4 flex justify-center">
                 <div className="w-32 h-32 mx-auto rounded-full flex items-center justify-center border-4 border-pinkGrungeLight">
@@ -107,7 +122,7 @@ export function AdminDashboardSensors() {
         </div>
 
         <div className="bg-white/90 backdrop-blur-sm p-6 rounded-lg shadow-lg text-gray-900">
-            <h3 className="text-lg font-bold text-black uppercase">Ultrasonic 6</h3>
+            <h3 className="text-lg font-bold text-black uppercase">Ultrasonic 6 // Plot 4</h3>
             <p className="text-sm text-gray-500 uppercase">Data</p>
             <div className="my-4 flex justify-center">
                 <div className="w-32 h-32 mx-auto rounded-full flex items-center justify-center border-4 border-cyanGrungeLight">

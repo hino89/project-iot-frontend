@@ -14,13 +14,13 @@ export function AdminDashboardMain() {
                 </p>
 
                 {/* 2. Placeholder Peta (style dari User Dashboard) */}
-                <div className="w-full h-[500px] rounded-lg mt-8 flex items-center justify-center bg-[url('/public/DenahParking.png')] bg-contain bg-center bg-no-repeat">
+                <div className="w-full h-[500px] rounded-lg mt-8 flex items-center justify-center bg-[url('/public/Parkingx4.png')] bg-contain bg-center bg-no-repeat">
 
                 </div>
 
                 <div className="grid grid-cols-4 gap-2 pt-6 w-full mx-auto">
                     <div className="bg-white/90 backdrop-blur-sm p-4 rounded-lg shadow-lg text-gray-900">
-                        <h3 className="text-sm font-bold text-black uppercase">Ultrasonic 1 // Plot 1</h3>
+                        <h3 className="text-sm font-bold text-black uppercase">Ultrasonic 3 // Plot 1</h3>
                         <p className="text-sm text-gray-500 uppercase">Data</p>
                         <div className="my-4 flex justify-center">
                             <div className="w-12 h-12 mx-auto rounded-full flex items-center justify-center border-2 border-cyanGrungeLight">
@@ -32,7 +32,7 @@ export function AdminDashboardMain() {
                         <p className="text-center text-gray-900 text-sm">25 cm</p>
                     </div>
                     <div className="bg-white/90 backdrop-blur-sm p-4 rounded-lg shadow-lg text-gray-900">
-                        <h3 className="text-sm font-bold text-black uppercase">Ultrasonic 2 // Plot 2</h3>
+                        <h3 className="text-sm font-bold text-black uppercase">Ultrasonic 4 // Plot 2</h3>
                         <p className="text-sm text-gray-500 uppercase">Data</p>
                         <div className="my-4 flex justify-center">
                             <div className="w-12 h-12 mx-auto rounded-full flex items-center justify-center border-2 border-cyanGrungeLight">
@@ -44,7 +44,7 @@ export function AdminDashboardMain() {
                         <p className="text-center text-gray-900 text-sm">25 cm</p>
                     </div>
                     <div className="bg-white/90 backdrop-blur-sm p-4 rounded-lg shadow-lg text-gray-900">
-                        <h3 className="text-sm font-bold text-black uppercase">Ultrasonic 3 // Plot 3</h3>
+                        <h3 className="text-sm font-bold text-black uppercase">Ultrasonic 5 // Plot 3</h3>
                         <p className="text-sm text-gray-500 uppercase">Data</p>
                         <div className="my-4 flex justify-center">
                             <div className="w-12 h-12 mx-auto rounded-full flex items-center justify-center border-2 border-cyanGrungeLight">
@@ -56,7 +56,7 @@ export function AdminDashboardMain() {
                         <p className="text-center text-gray-900 text-sm">25 cm</p>
                     </div>
                     <div className="bg-white/90 backdrop-blur-sm p-4 rounded-lg shadow-lg text-gray-900">
-                        <h3 className="text-sm font-bold text-black uppercase">Ultrasonic 4 // Plot 4</h3>
+                        <h3 className="text-sm font-bold text-black uppercase">Ultrasonic 6 // Plot 4</h3>
                         <p className="text-sm text-gray-500 uppercase">Data</p>
                         <div className="my-4 flex justify-center">
                             <div className="w-12 h-12 mx-auto rounded-full flex items-center justify-center border-2 border-cyanGrungeLight">
