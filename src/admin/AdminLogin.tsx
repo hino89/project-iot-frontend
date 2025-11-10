@@ -50,10 +50,10 @@ export function AdminLogin() {
           {/* Ini adalah "struktur dasar" form-nya */}
           <div className="space-y-5 mt-4">
             <div>
-              <label className="block font-medium text-gray-700">Email</label>
+              <label className="block font-medium text-gray-700">Username</label>
               <input 
                 type="text" 
-                placeholder="example@gmail.com"
+                placeholder="username"
                 className="mt-1 w-full rounded-md border border-gray-300 p-3 shadow-sm" 
               />
             </div>
