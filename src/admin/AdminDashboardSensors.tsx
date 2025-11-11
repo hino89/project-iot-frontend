@@ -55,83 +55,88 @@ export function AdminDashboardSensors() {
                     <p className="text-center text-gray-900 text-lg">terbuka</p>
                 </div>
             </div>
-
-        <div className="bg-white/90 backdrop-blur-sm p-6 rounded-lg shadow-lg text-gray-900">
-            <h3 className="text-lg font-bold text-black uppercase">Ultrasonic 1 // Palang 1</h3>
-            <p className="text-sm text-gray-500 uppercase">Data</p>
-            <div className="my-4 flex justify-center">
-                <div className="w-32 h-32 mx-auto rounded-full flex items-center justify-center border-4 border-cyanGrungeLight">
-                    <svg className="w-16 h-16 text-cyanGrungeLight" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M7.5 21 3 16.5m0 0L7.5 12M3 16.5h18m-7.5-3L21 9m0 0L16.5 4.5M21 9H3" />
-                    </svg>
+        <div className="grid grid-cols-2 gap-6 w-full mx-auto">
+            <div className="bg-white/90 backdrop-blur-sm p-6 rounded-lg shadow-lg text-gray-900">
+                <h3 className="text-lg font-bold text-black uppercase">Ultrasonic 1 // Palang 1</h3>
+                <p className="text-sm text-gray-500 uppercase">Data</p>
+                <div className="my-4 flex justify-center">
+                    <div className="w-32 h-32 mx-auto rounded-full flex items-center justify-center border-4 border-cyanGrungeLight">
+                        <svg className="w-16 h-16 text-cyanGrungeLight" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M7.5 21 3 16.5m0 0L7.5 12M3 16.5h18m-7.5-3L21 9m0 0L16.5 4.5M21 9H3" />
+                        </svg>
+                    </div>
                 </div>
+                <p className="text-center text-gray-900 text-lg">25 cm</p>
             </div>
-            <p className="text-center text-gray-900 text-lg">25 cm</p>
+
+            <div className="bg-white/90 backdrop-blur-sm p-6 rounded-lg shadow-lg text-gray-900">
+                <h3 className="text-lg font-bold text-black uppercase">Ultrasonic 2 // Palang 1</h3>
+                <p className="text-sm text-gray-500 uppercase">Data</p>
+                <div className="my-4 flex justify-center">
+                    <div className="w-32 h-32 mx-auto rounded-full flex items-center justify-center border-4 border-redGrungeLight">
+                        <svg className="w-16 h-16 text-redGrungeLight" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M7.5 21 3 16.5m0 0L7.5 12M3 16.5h18m-7.5-3L21 9m0 0L16.5 4.5M21 9H3" />
+                        </svg>
+                    </div>
+                </div>
+                <p className="text-center text-gray-900 text-lg">25 cm</p>
+            </div>
         </div>
 
-        <div className="bg-white/90 backdrop-blur-sm p-6 rounded-lg shadow-lg text-gray-900">
-            <h3 className="text-lg font-bold text-black uppercase">Ultrasonic 2 // Palang 1</h3>
-            <p className="text-sm text-gray-500 uppercase">Data</p>
-            <div className="my-4 flex justify-center">
-                <div className="w-32 h-32 mx-auto rounded-full flex items-center justify-center border-4 border-redGrungeLight">
-                    <svg className="w-16 h-16 text-redGrungeLight" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M7.5 21 3 16.5m0 0L7.5 12M3 16.5h18m-7.5-3L21 9m0 0L16.5 4.5M21 9H3" />
-                    </svg>
+        <div className="grid grid-cols-2 gap-6 w-full mx-auto">
+            <div className="bg-white/90 backdrop-blur-sm p-6 rounded-lg shadow-lg text-gray-900">
+                <h3 className="text-lg font-bold text-black uppercase">Ultrasonic 3 // Plot 1</h3>
+                <p className="text-sm text-gray-500 uppercase">Data</p>
+                <div className="my-4 flex justify-center">
+                    <div className="w-32 h-32 mx-auto rounded-full flex items-center justify-center border-4 border-yellowGrungeLight">
+                        <svg className="w-16 h-16 text-yellowGrungeLight" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M7.5 21 3 16.5m0 0L7.5 12M3 16.5h18m-7.5-3L21 9m0 0L16.5 4.5M21 9H3" />
+                        </svg>
+                    </div>
                 </div>
+                <p className="text-center text-gray-900 text-lg">25 cm</p>
             </div>
-            <p className="text-center text-gray-900 text-lg">25 cm</p>
+
+            <div className="bg-white/90 backdrop-blur-sm p-6 rounded-lg shadow-lg text-gray-900">
+                <h3 className="text-lg font-bold text-black uppercase">Ultrasonic 4 // Plot 2</h3>
+                <p className="text-sm text-gray-500 uppercase">Data</p>
+                <div className="my-4 flex justify-center">
+                    <div className="w-32 h-32 mx-auto rounded-full flex items-center justify-center border-4 border-purpleGrungeLight">
+                        <svg className="w-16 h-16 text-purpleGrungeLight" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M7.5 21 3 16.5m0 0L7.5 12M3 16.5h18m-7.5-3L21 9m0 0L16.5 4.5M21 9H3" />
+                        </svg>
+                    </div>
+                </div>
+                <p className="text-center text-gray-900 text-lg">25 cm</p>
+            </div>
         </div>
 
-        <div className="bg-white/90 backdrop-blur-sm p-6 rounded-lg shadow-lg text-gray-900">
-            <h3 className="text-lg font-bold text-black uppercase">Ultrasonic 3 // Plot 1</h3>
-            <p className="text-sm text-gray-500 uppercase">Data</p>
-            <div className="my-4 flex justify-center">
-                <div className="w-32 h-32 mx-auto rounded-full flex items-center justify-center border-4 border-yellowGrungeLight">
-                    <svg className="w-16 h-16 text-yellowGrungeLight" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M7.5 21 3 16.5m0 0L7.5 12M3 16.5h18m-7.5-3L21 9m0 0L16.5 4.5M21 9H3" />
-                    </svg>
+        <div className="grid grid-cols-2 gap-6 w-full mx-auto">
+            <div className="bg-white/90 backdrop-blur-sm p-6 rounded-lg shadow-lg text-gray-900">
+                <h3 className="text-lg font-bold text-black uppercase">Ultrasonic 5 // Plot 3</h3>
+                <p className="text-sm text-gray-500 uppercase">Data</p>
+                <div className="my-4 flex justify-center">
+                    <div className="w-32 h-32 mx-auto rounded-full flex items-center justify-center border-4 border-pinkGrungeLight">
+                        <svg className="w-16 h-16 text-pinkGrungeLight" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M7.5 21 3 16.5m0 0L7.5 12M3 16.5h18m-7.5-3L21 9m0 0L16.5 4.5M21 9H3" />
+                        </svg>
+                    </div>
                 </div>
+                <p className="text-center text-gray-900 text-lg">25 cm</p>
             </div>
-            <p className="text-center text-gray-900 text-lg">25 cm</p>
-        </div>
 
-        <div className="bg-white/90 backdrop-blur-sm p-6 rounded-lg shadow-lg text-gray-900">
-            <h3 className="text-lg font-bold text-black uppercase">Ultrasonic 4 // Plot 2</h3>
-            <p className="text-sm text-gray-500 uppercase">Data</p>
-            <div className="my-4 flex justify-center">
-                <div className="w-32 h-32 mx-auto rounded-full flex items-center justify-center border-4 border-purpleGrungeLight">
-                    <svg className="w-16 h-16 text-purpleGrungeLight" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M7.5 21 3 16.5m0 0L7.5 12M3 16.5h18m-7.5-3L21 9m0 0L16.5 4.5M21 9H3" />
-                    </svg>
+            <div className="bg-white/90 backdrop-blur-sm p-6 rounded-lg shadow-lg text-gray-900">
+                <h3 className="text-lg font-bold text-black uppercase">Ultrasonic 6 // Plot 4</h3>
+                <p className="text-sm text-gray-500 uppercase">Data</p>
+                <div className="my-4 flex justify-center">
+                    <div className="w-32 h-32 mx-auto rounded-full flex items-center justify-center border-4 border-cyanGrungeLight">
+                        <svg className="w-16 h-16 text-cyanGrungeLight" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M7.5 21 3 16.5m0 0L7.5 12M3 16.5h18m-7.5-3L21 9m0 0L16.5 4.5M21 9H3" />
+                        </svg>
+                    </div>
                 </div>
+                <p className="text-center text-gray-900 text-lg">25 cm</p>
             </div>
-            <p className="text-center text-gray-900 text-lg">25 cm</p>
-        </div>
-
-        <div className="bg-white/90 backdrop-blur-sm p-6 rounded-lg shadow-lg text-gray-900">
-            <h3 className="text-lg font-bold text-black uppercase">Ultrasonic 5 // Plot 3</h3>
-            <p className="text-sm text-gray-500 uppercase">Data</p>
-            <div className="my-4 flex justify-center">
-                <div className="w-32 h-32 mx-auto rounded-full flex items-center justify-center border-4 border-pinkGrungeLight">
-                    <svg className="w-16 h-16 text-pinkGrungeLight" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M7.5 21 3 16.5m0 0L7.5 12M3 16.5h18m-7.5-3L21 9m0 0L16.5 4.5M21 9H3" />
-                    </svg>
-                </div>
-            </div>
-            <p className="text-center text-gray-900 text-lg">25 cm</p>
-        </div>
-
-        <div className="bg-white/90 backdrop-blur-sm p-6 rounded-lg shadow-lg text-gray-900">
-            <h3 className="text-lg font-bold text-black uppercase">Ultrasonic 6 // Plot 4</h3>
-            <p className="text-sm text-gray-500 uppercase">Data</p>
-            <div className="my-4 flex justify-center">
-                <div className="w-32 h-32 mx-auto rounded-full flex items-center justify-center border-4 border-cyanGrungeLight">
-                    <svg className="w-16 h-16 text-cyanGrungeLight" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M7.5 21 3 16.5m0 0L7.5 12M3 16.5h18m-7.5-3L21 9m0 0L16.5 4.5M21 9H3" />
-                    </svg>
-                </div>
-            </div>
-            <p className="text-center text-gray-900 text-lg">25 cm</p>
         </div>
     </div> 
   );
