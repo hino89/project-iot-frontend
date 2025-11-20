@@ -1,6 +1,7 @@
 // src/admin/AdminDashboardSensors.tsx
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom'; // Import hook
+import { io } from 'socket.io-client'; // Import Client Socket
 
 // Alamat API Backend Anda
 const API_BASE_URL = 'http://localhost:5111';
@@ -33,111 +34,111 @@ export function AdminDashboardSensors() {
   // Ini adalah perbaikannya: Panggil hook di DALAM komponen
   const navigate = useNavigate(); 
 
-  
-  // --- FUNGSI HELPER JUGA PINDAH KE DALAM SINI ---
-  // (Ini diperlukan agar fungsi ini bisa 'melihat' const 'navigate')
-  
-  /**
-   * Helper function untuk fetch data terbaru dari endpoint paginasi
-   */
-  async function fetchLatestSensorData(endpoint: string, dataKey: string, valueKey: string) {
-    const token = localStorage.getItem('token');
+  async function fetchInitialData() {
+    try {
+        // Helper kecil untuk fetch satu sensor
+        const fetchOne = async (endpoint: string, dataKey: string, valueKey: string) => {
+            const token = localStorage.getItem('token');
+            if (!token) throw new Error('No token');
+            
+            const res = await fetch(`${API_BASE_URL}${endpoint}?page=1&limit=1`, {
+                headers: { 'Authorization': `Bearer ${token}` }
+            });
+            
+            if (res.status === 401) {
+                localStorage.removeItem('token');
+                navigate('/adminLogin');
+                throw new Error('Unauthorized');
+            }
+            
+            const json = await res.json();
+            return (json[dataKey] && json[dataKey].length > 0) ? json[dataKey][0][valueKey] : 0;
+        };
 
-    if (!token) {
-      navigate('/adminLogin'); // Sekarang 'navigate' bisa diakses
-      throw new Error('No token found');
-    }
-    
-    const response = await fetch(`${API_BASE_URL}${endpoint}?page=1&limit=1`, {
-      headers: {
-        'Authorization': `Bearer ${token}`
-      }
-    });
+        // Panggil semua (Promise.all)
+        const [us1, us2, us3, us4, us5, us6, mq2, api] = await Promise.all([
+            fetchOne('/api/ultrasonic1', 'ultrasonics', 'distance'),
+            fetchOne('/api/ultrasonic2', 'ultrasonics', 'distance'),
+            fetchOne('/api/ultrasonic3', 'ultrasonics', 'distance'),
+            fetchOne('/api/ultrasonic4', 'ultrasonics', 'distance'),
+            fetchOne('/api/ultrasonic5', 'ultrasonics', 'distance'),
+            fetchOne('/api/ultrasonic6', 'ultrasonics', 'distance'),
+            fetchOne('/api/mq2', 'mq2s', 'value'),
+            fetchOne('/api/flame_sensor', 'flame_sensors', 'value'),
+        ]);
 
-    if (response.status === 401 || response.status === 403) {
-      localStorage.removeItem('token');
-      navigate('/adminLogin'); // 'navigate' juga bisa diakses di sini
-      throw new Error('Token is invalid or expired');
-    }
-    
-    if (!response.ok) {
-      throw new Error(`Failed to fetch ${endpoint}`);
-    }
-    
-    const data = await response.json();
-    
-    if (data[dataKey] && data[dataKey].length > 0) {
-      return data[dataKey][0][valueKey];
-    } else {
-      console.warn(`No data items found for ${endpoint} in key ${dataKey}`);
-      return 0; // Kembalikan 0 jika tidak ada data
+        setSensorData({
+            ultrasonic1: us1, ultrasonic2: us2, ultrasonic3: us3,
+            ultrasonic4: us4, ultrasonic5: us5, ultrasonic6: us6,
+            mq2: mq2, api: api,
+            palang1: us1 > 10 ? 'Terbuka' : 'Tertutup',
+            palang2: us2 > 10 ? 'Terbuka' : 'Tertutup'
+        });
+    } catch (err) {
+        console.error(err);
+        // Jangan set error full page kalau gagal socket, cukup log saja
+    } finally {
+        setLoading(false);
     }
   }
 
-  
-  // --- USE EFFECT TETAP DI DALAM SINI ---
+
   useEffect(() => {
-    async function fetchData() {
-      try {
-        // Panggil helper function yang sekarang ada di dalam scope
-        const [
-          us1_distance,
-          us2_distance,
-          us3_distance,
-          us4_distance,
-          us5_distance,
-          us6_distance,
-          mq2_value,
-          api_status
-        ] = await Promise.all([
-          // (endpoint, dataKey, valueKey)
-          // Verifikasi 'dataKey' dan 'valueKey' ini di browser Anda!
-          fetchLatestSensorData('/api/ultrasonic1', 'ultrasonics', 'distance'),
-          fetchLatestSensorData('/api/ultrasonic2', 'ultrasonics', 'distance'),
-          fetchLatestSensorData('/api/ultrasonic3', 'ultrasonics', 'distance'),
-          fetchLatestSensorData('/api/ultrasonic4', 'ultrasonics', 'distance'),
-          fetchLatestSensorData('/api/ultrasonic5', 'ultrasonics', 'distance'),
-          fetchLatestSensorData('/api/ultrasonic6', 'ultrasonics', 'distance'),
-          fetchLatestSensorData('/api/mq2', 'mq2s', 'value'), // <-- ASUMSI
-          fetchLatestSensorData('/api/flame_sensor', 'flame_sensors', 'value'), // <-- BENAR // <-- ASUMSI
-        ]);
+    // 1. Ambil data awal via HTTP biasa (biar gak kosong pas loading)
+    fetchInitialData();
 
-        // Interpretasikan data palang
-        const palang1Status = us1_distance > 10 ? 'Terbuka' : 'Tertutup'; // <-- GANTI LOGIKA 10cm
-        const palang2Status = us2_distance > 10 ? 'Terbuka' : 'Tertutup'; // <-- GANTI LOGIKA 10cm
+    // 2. BUKA KONEKSI SOCKET
+    const socket = io(API_BASE_URL);
 
-        // Susun objek SensorData
-        setSensorData({
-          mq2: mq2_value,
-          api: api_status,
-          palang1: palang1Status,
-          palang2: palang2Status,
-          ultrasonic1: us1_distance,
-          ultrasonic2: us2_distance,
-          ultrasonic3: us3_distance,
-          ultrasonic4: us4_distance,
-          ultrasonic5: us5_distance,
-          ultrasonic6: us6_distance,
+    // 3. PASANG TELINGA (LISTENERS) UNTUK TIAP SENSOR
+    
+    // Dengar Ultrasonic 1
+    socket.on('update_ultrasonic1', (newData) => {
+        setSensorData(prev => {
+            if (!prev) return null;
+            return {
+                ...prev,
+                ultrasonic1: newData.distance,
+                // Update Palang 1 Real-time
+                palang1: newData.distance > 10 ? 'Terbuka' : 'Tertutup' 
+            };
         });
+    });
 
-      } catch (e) {
-        if (e instanceof Error) {
-          setError(e.message);
-        } else {
-          setError('An unknown error occurred');
-        }
-      } finally {
-        setLoading(false);
-      }
-    }
+    // Dengar Ultrasonic 2
+    socket.on('update_ultrasonic2', (newData) => {
+        setSensorData(prev => {
+            if (!prev) return null;
+            return {
+                ...prev,
+                ultrasonic2: newData.distance,
+                // Update Palang 2 Real-time
+                palang2: newData.distance > 10 ? 'Terbuka' : 'Tertutup'
+            };
+        });
+    });
 
-    fetchData(); // Panggil sekali saat load
-    const intervalId = setInterval(fetchData, 2000); // Ulangi tiap 5 detik
-    
-    // Bersihkan interval
-    return () => clearInterval(intervalId); 
-    
-  }, [navigate]); // Tambahkan 'navigate' sebagai dependency
+    // Dengar Ultrasonic 3 s/d 6 (Pola sama)
+    socket.on('update_ultrasonic3', (d) => setSensorData(prev => prev ? {...prev, ultrasonic3: d.distance} : null));
+    socket.on('update_ultrasonic4', (d) => setSensorData(prev => prev ? {...prev, ultrasonic4: d.distance} : null));
+    socket.on('update_ultrasonic5', (d) => setSensorData(prev => prev ? {...prev, ultrasonic5: d.distance} : null));
+    socket.on('update_ultrasonic6', (d) => setSensorData(prev => prev ? {...prev, ultrasonic6: d.distance} : null));
+
+    // Dengar MQ2
+    socket.on('update_mq2_1', (d) => {
+         setSensorData(prev => prev ? {...prev, mq2: d.value} : null);
+    });
+
+    // Dengar Flame
+    socket.on('update_flame1', (d) => {
+         setSensorData(prev => prev ? {...prev, api: d.value} : null); // Asumsi d.value (sesuai controller)
+    });
+
+    // 4. CLEANUP (Tutup koneksi saat pindah halaman)
+    return () => {
+        socket.disconnect();
+    };
+  }, []); // Dependency kosong
 
   
   // --- RENDER CONTENT (TIDAK BERUBAH) ---
