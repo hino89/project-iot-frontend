@@ -1,6 +1,151 @@
 // import { Link } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom'; // Import hook
+const API_BASE_URL = 'http://localhost:5111';
+
+// Definisikan tipe datanya
+interface SensorData {
+  mq2: number;
+  api: string;
+  palang1: string;
+  palang2: string;
+  ultrasonic1: number;
+  ultrasonic2: number;
+  ultrasonic3: number;
+  ultrasonic4: number;
+  ultrasonic5: number;
+  ultrasonic6: number;
+}
 
 export function AdminDashboardMain() {
+
+    // --- SEMUA HOOK DIPANGGIL DI DALAM SINI ---
+      const [sensorData, setSensorData] = useState<SensorData | null>(null);
+      const [loading, setLoading] = useState(true);
+      const [error, setError] = useState<string | null>(null);
+      
+      // Ini adalah perbaikannya: Panggil hook di DALAM komponen
+      const navigate = useNavigate(); 
+    
+      
+      // --- FUNGSI HELPER JUGA PINDAH KE DALAM SINI ---
+      // (Ini diperlukan agar fungsi ini bisa 'melihat' const 'navigate')
+      
+      /**
+       * Helper function untuk fetch data terbaru dari endpoint paginasi
+       */
+      async function fetchLatestSensorData(endpoint: string, dataKey: string, valueKey: string) {
+        const token = localStorage.getItem('token');
+    
+        if (!token) {
+          navigate('/adminLogin'); // Sekarang 'navigate' bisa diakses
+          throw new Error('No token found');
+        }
+        
+        const response = await fetch(`${API_BASE_URL}${endpoint}?page=1&limit=1`, {
+          headers: {
+            'Authorization': `Bearer ${token}`
+          }
+        });
+    
+        if (response.status === 401 || response.status === 403) {
+          localStorage.removeItem('token');
+          navigate('/adminLogin'); // 'navigate' juga bisa diakses di sini
+          throw new Error('Token is invalid or expired');
+        }
+        
+        if (!response.ok) {
+          throw new Error(`Failed to fetch ${endpoint}`);
+        }
+        
+        const data = await response.json();
+        
+        if (data[dataKey] && data[dataKey].length > 0) {
+          return data[dataKey][0][valueKey];
+        } else {
+          console.warn(`No data items found for ${endpoint} in key ${dataKey}`);
+          return 0; // Kembalikan 0 jika tidak ada data
+        }
+      }
+    
+      
+      // --- USE EFFECT TETAP DI DALAM SINI ---
+      useEffect(() => {
+        async function fetchData() {
+          try {
+            // Panggil helper function yang sekarang ada di dalam scope
+            const [
+              us1_distance,
+              us2_distance,
+              us3_distance,
+              us4_distance,
+              us5_distance,
+              us6_distance,
+              mq2_value,
+              api_status
+            ] = await Promise.all([
+              // (endpoint, dataKey, valueKey)
+              // Verifikasi 'dataKey' dan 'valueKey' ini di browser Anda!
+              fetchLatestSensorData('/api/ultrasonic1', 'ultrasonics', 'distance'),
+              fetchLatestSensorData('/api/ultrasonic2', 'ultrasonics', 'distance'),
+              fetchLatestSensorData('/api/ultrasonic3', 'ultrasonics', 'distance'),
+              fetchLatestSensorData('/api/ultrasonic4', 'ultrasonics', 'distance'),
+              fetchLatestSensorData('/api/ultrasonic5', 'ultrasonics', 'distance'),
+              fetchLatestSensorData('/api/ultrasonic6', 'ultrasonics', 'distance'),
+              fetchLatestSensorData('/api/mq2', 'mq2s', 'value'), // <-- ASUMSI
+              fetchLatestSensorData('/api/flame_sensor', 'flame_sensors', 'value'), // <-- ASUMSI
+            ]);
+    
+            // Interpretasikan data palang
+            const palang1Status = us1_distance > 10 ? 'Terbuka' : 'Tertutup'; // <-- GANTI LOGIKA 10cm
+            const palang2Status = us2_distance > 10 ? 'Terbuka' : 'Tertutup'; // <-- GANTI LOGIKA 10cm
+    
+            // Susun objek SensorData
+            setSensorData({
+              mq2: mq2_value,
+              api: api_status,
+              palang1: palang1Status,
+              palang2: palang2Status,
+              ultrasonic1: us1_distance,
+              ultrasonic2: us2_distance,
+              ultrasonic3: us3_distance,
+              ultrasonic4: us4_distance,
+              ultrasonic5: us5_distance,
+              ultrasonic6: us6_distance,
+            });
+    
+          } catch (e) {
+            if (e instanceof Error) {
+              setError(e.message);
+            } else {
+              setError('An unknown error occurred');
+            }
+          } finally {
+            setLoading(false);
+          }
+        }
+    
+        fetchData(); // Panggil sekali saat load
+        const intervalId = setInterval(fetchData, 2000); // Ulangi tiap 5 detik
+        
+        // Bersihkan interval
+        return () => clearInterval(intervalId); 
+        
+      }, [navigate]); // Tambahkan 'navigate' sebagai dependency
+    
+      
+      // --- RENDER CONTENT (TIDAK BERUBAH) ---
+      if (loading) {
+        return <div className="p-24 text-white text-center">Loading sensor data...</div>;
+      }
+      if (error) {
+        return <div className="p-24 text-red-500 text-center">Error: {error}</div>;
+      }
+      if (!sensorData) {
+        return <div className="p-24 text-white text-center">No data found.</div>;
+      }
+    
+
   return (
     <div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 px-12">
@@ -29,7 +174,7 @@ export function AdminDashboardMain() {
                                 </svg>
                             </div>
                         </div>
-                        <p className="text-center text-gray-900 text-sm">25 cm</p>
+                        <p className="text-center text-gray-900 text-sm">{sensorData.ultrasonic3} cm</p>
                     </div>
                     <div className="bg-white/90 backdrop-blur-sm p-4 rounded-lg shadow-lg text-gray-900">
                         <h3 className="text-sm font-bold text-black uppercase">Ultrasonic 4 // Plot 2</h3>
@@ -41,7 +186,7 @@ export function AdminDashboardMain() {
                                 </svg>
                             </div>
                         </div>
-                        <p className="text-center text-gray-900 text-sm">25 cm</p>
+                        <p className="text-center text-gray-900 text-sm">{sensorData.ultrasonic4} cm</p>
                     </div>
                     <div className="bg-white/90 backdrop-blur-sm p-4 rounded-lg shadow-lg text-gray-900">
                         <h3 className="text-sm font-bold text-black uppercase">Ultrasonic 5 // Plot 3</h3>
@@ -53,7 +198,7 @@ export function AdminDashboardMain() {
                                 </svg>
                             </div>
                         </div>
-                        <p className="text-center text-gray-900 text-sm">25 cm</p>
+                        <p className="text-center text-gray-900 text-sm">{sensorData.ultrasonic5} cm</p>
                     </div>
                     <div className="bg-white/90 backdrop-blur-sm p-4 rounded-lg shadow-lg text-gray-900">
                         <h3 className="text-sm font-bold text-black uppercase">Ultrasonic 6 // Plot 4</h3>
@@ -65,7 +210,7 @@ export function AdminDashboardMain() {
                                 </svg>
                             </div>
                         </div>
-                        <p className="text-center text-gray-900 text-sm">25 cm</p>
+                        <p className="text-center text-gray-900 text-sm">{sensorData.ultrasonic6} cm</p>
                     </div>
                 </div>
 
@@ -78,7 +223,7 @@ export function AdminDashboardMain() {
                         <div className="absolute inset-4 rounded-full border-[12px] border-t-cyan-500 border-r-cyan-500 border-b-cyan-500 border-l-transparent transform -rotate-45"></div>
                     </div>
                 </div>
-                <p className="text-center text-gray-900 text-lg">600 ppm</p>
+                <p className="text-center text-gray-900 text-lg">{sensorData.mq2} ppm</p>
             </div>
 
             <div className="bg-white/90 backdrop-blur-sm p-6 rounded-lg shadow-lg text-gray-900">
@@ -92,7 +237,7 @@ export function AdminDashboardMain() {
                         </svg>
                     </div>
                 </div>
-                <p className="text-center text-gray-900 text-lg">safe</p>
+                <p className="text-center text-gray-900 text-lg">{sensorData.api}</p>
             </div>
 
             <div className="grid grid-cols-2 gap-6 w-full mx-auto">
@@ -107,7 +252,7 @@ export function AdminDashboardMain() {
                             </svg>
                         </div>
                     </div>
-                    <p className="text-center text-gray-900 text-lg">terbuka</p>
+                    <p className="text-center text-gray-900 text-lg">{sensorData.palang1}</p>
                 </div>
                 <div className="bg-white/90 backdrop-blur-sm p-6 rounded-lg shadow-lg text-gray-900">
                     <h3 className="text-lg font-bold text-black uppercase">Status Palang 2</h3>
@@ -120,7 +265,7 @@ export function AdminDashboardMain() {
                             </svg>
                         </div>
                     </div>
-                    <p className="text-center text-gray-900 text-lg">terbuka</p>
+                    <p className="text-center text-gray-900 text-lg">{sensorData.palang2}</p>
                 </div>
             </div>
 
